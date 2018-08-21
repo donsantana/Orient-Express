@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="-1039" y="-675"/>
         </scene>
-        <!--Un Taxi-->
+        <!--Orient Express-->
         <scene sceneID="eK2-LQ-1YZ">
             <objects>
-                <viewController storyboardIdentifier="Inicio" title="Un Taxi" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FtK-GF-p1N" customClass="InicioController" customModule="OrientExpress_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Inicio" title="Orient Express" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FtK-GF-p1N" customClass="InicioController" customModule="OrientExpress_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WVd-rl-qxu"/>
                         <viewControllerLayoutGuide type="bottom" id="El1-Lb-Y4L"/>
@@ -53,48 +53,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5vI-0v-o7d" userLabel="Menu">
-                                <rect key="frame" x="0.0" y="64" width="414" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAX-iU-T9d" userLabel="Mapa">
-                                        <rect key="frame" x="313" y="0.0" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="Mapa.png"/>
-                                        <connections>
-                                            <action selector="MapaMenu:" destination="FtK-GF-p1N" eventType="touchUpInside" id="KaY-qv-TLS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAe-3c-xTe">
-                                        <rect key="frame" x="189" y="0.0" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="solicitudesp.png"/>
-                                        <connections>
-                                            <action selector="MostrarSolPendientes:" destination="FtK-GF-p1N" eventType="touchUpInside" id="wdk-V6-vco"/>
-                                        </connections>
-                                    </button>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="solpendientes.png" translatesAutoresizingMaskIntoConstraints="NO" id="NiW-yd-sFh">
-                                        <rect key="frame" x="217" y="0.0" width="25" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fA-4b-CkN">
-                                        <rect key="frame" x="219" y="0.0" width="21" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6W-HA-VEH" userLabel="Emergencia">
-                                        <rect key="frame" x="64" y="0.0" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="callcenter.png"/>
-                                        <connections>
-                                            <action selector="MostrarTelefonosCC:" destination="FtK-GF-p1N" eventType="touchUpInside" id="cir-On-3vS"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.98257499930000003" green="0.93499225379999995" blue="0.35502547029999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Apn-mx-tdh">
                                 <rect key="frame" x="0.0" y="44" width="375" height="729"/>
                             </mapView>
@@ -148,7 +106,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.98431372549999996" green="0.93725490199999995" blue="0.35294117650000001" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="jcf-sa-gKN"/>
                                     <constraint firstAttribute="width" constant="248" id="qhl-zr-CiD"/>
@@ -247,7 +205,7 @@
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.96471071243286133" green="0.87945151329040527" blue="0.34881433844566345" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="qD0-46-QRU" firstAttribute="bottom" secondItem="ESp-BV-zrE" secondAttribute="centerY" constant="20" id="2IM-hO-OVY"/>
                                             <constraint firstItem="qD0-46-QRU" firstAttribute="trailing" secondItem="ESp-BV-zrE" secondAttribute="trailing" constant="-10" id="Dd3-gR-uFQ"/>
@@ -270,9 +228,9 @@
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PbK-fp-Ft8" id="8F7-lP-kIN">
                                                     <rect key="frame" x="0.0" y="0.0" width="360" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <color key="backgroundColor" red="0.97724437710000001" green="0.93420761819999998" blue="0.4547607005" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </tableViewCellContentView>
-                                                <color key="backgroundColor" red="0.97724437710000001" green="0.93420761819999998" blue="0.4547607005" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
@@ -281,7 +239,7 @@
                                         </connections>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.96471071239999995" green="0.87945151330000004" blue="0.34881433839999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="eSl-Sg-b0P" firstAttribute="leading" secondItem="ogP-bV-0oJ" secondAttribute="leading" id="2Ku-x5-P8Z"/>
                                     <constraint firstAttribute="trailing" secondItem="ESp-BV-zrE" secondAttribute="trailing" id="6E1-Fe-nNG"/>
@@ -299,7 +257,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jI2-oi-kPa">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jI2-oi-kPa">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <userGuides>
                                     <userLayoutGuide location="292" affinity="minY"/>
@@ -562,6 +520,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" image="YES"/>
                                         </accessibility>
@@ -606,7 +565,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.81091260909999996" green="0.57014101740000001" blue="0.4509164095" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="1bk-SN-INM" firstAttribute="bottom" secondItem="jI2-oi-kPa" secondAttribute="bottom" constant="-40" id="VVg-ha-yrn"/>
                                     <constraint firstAttribute="trailing" secondItem="1bk-SN-INM" secondAttribute="trailing" constant="20" id="X6c-Z7-D4h"/>
@@ -650,7 +609,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="UnTaxi" id="smv-Jw-mG4">
+                    <navigationItem key="navigationItem" title="Orient Express" id="smv-Jw-mG4">
                         <barButtonItem key="backBarButtonItem" title="Atrás" style="plain" id="FMl-HW-gEi">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
@@ -671,23 +630,17 @@
                     <connections>
                         <outlet property="AlertaEsperaView" destination="8vz-a4-Kat" id="2L0-BV-op6"/>
                         <outlet property="BtnsView" destination="iey-mg-Oth" id="uaz-uM-Noj"/>
-                        <outlet property="CallCEnterBtn" destination="O6W-HA-VEH" id="jMc-Lx-QyS"/>
                         <outlet property="CancelarSolicitudProceso" destination="Kip-5h-KwR" id="eTj-Hu-lQk"/>
-                        <outlet property="CantSolPendientes" destination="2fA-4b-CkN" id="YqJ-N3-cQu"/>
                         <outlet property="ContactoView" destination="FQv-wE-6dD" id="fDf-2x-jF8"/>
                         <outlet property="EnviarSolBtn" destination="VVi-8C-BAp" id="kHZ-F0-XH9"/>
                         <outlet property="LocationBtn" destination="bP3-BU-P3B" id="YmQ-YA-hZB"/>
-                        <outlet property="MapaBtn" destination="MAX-iU-T9d" id="vmS-pW-fLr"/>
                         <outlet property="MensajeEspera" destination="5Wc-B0-nFv" id="mlD-yQ-SnW"/>
                         <outlet property="MenuTable" destination="eSl-Sg-b0P" id="ZZw-AD-5tp"/>
-                        <outlet property="MenuView" destination="5vI-0v-o7d" id="Q2K-v5-pKG"/>
                         <outlet property="MenuView1" destination="ogP-bV-0oJ" id="95r-d2-nmf"/>
                         <outlet property="NombreContactoText" destination="kPM-lD-jjt" id="ZUx-Ju-jUC"/>
                         <outlet property="NombreUsuario" destination="HW5-P3-uU5" id="wEP-nF-84a"/>
                         <outlet property="RecordarSwitch" destination="QAy-XX-FLL" id="9Ud-x4-3ni"/>
                         <outlet property="RecordarView" destination="zCr-EI-LIp" id="rfX-g2-PCz"/>
-                        <outlet property="SolPendImage" destination="NiW-yd-sFh" id="CCg-ZV-WKl"/>
-                        <outlet property="SolPendientesBtn" destination="bAe-3c-xTe" id="t46-tq-8wR"/>
                         <outlet property="SolPendientesView" destination="NtH-ct-mJZ" id="YAY-h3-qOA"/>
                         <outlet property="SolicitarBtn" destination="bde-nm-Q0b" id="VBJ-tv-CnJ"/>
                         <outlet property="SolicitudView" destination="1bk-SN-INM" id="SWa-xl-njG"/>
@@ -910,7 +863,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="59.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.97724437710000001" green="0.93420761819999998" blue="0.4547607005" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1923,8 +1876,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Mapa.png" width="44" height="44"/>
-        <image name="callcenter.png" width="44" height="44"/>
         <image name="chofer.png" width="150" height="150"/>
         <image name="costo" width="40" height="40"/>
         <image name="detalles" width="160" height="66"/>
@@ -1937,8 +1888,6 @@
         <image name="origen2" width="30" height="60"/>
         <image name="salir2" width="48" height="48"/>
         <image name="smsvoz.png" width="200" height="60"/>
-        <image name="solicitudesp.png" width="44" height="44"/>
-        <image name="solpendientes.png" width="32" height="27"/>
         <image name="stargris" width="50" height="50"/>
         <image name="tiempo" width="40" height="40"/>
     </resources>

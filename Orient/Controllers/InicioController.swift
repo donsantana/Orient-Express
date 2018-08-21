@@ -91,8 +91,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
     @IBOutlet weak var CallCEnterBtn: UIButton!
     @IBOutlet weak var SolPendientesBtn: UIButton!
     @IBOutlet weak var MapaBtn: UIButton!
-    @IBOutlet weak var SolPendImage: UIImageView!
-    @IBOutlet weak var CantSolPendientes: UILabel!
     @IBOutlet weak var SolPendientesView: UIView!
     
     
@@ -155,22 +153,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         let region = MKCoordinateRegion(center: self.origenAnotacion.coordinate, span: span)
         self.mapaVista.setRegion(region, animated: true)
         
-        //UBICAR LOS BOTONES DEL MENU
-        var espacioBtn = self.view.frame.width / 4
-        self.CallCEnterBtn.frame = CGRect(x: espacioBtn - 40, y: 5, width: 44, height: 44)
-        self.SolPendientesBtn.frame = CGRect(x: (espacioBtn * 2 - 25), y: 5, width: 44, height: 44)
-        self.SolPendImage.frame = CGRect(x: (espacioBtn * 2), y: 5, width: 25, height: 22)
-        self.CantSolPendientes.frame = CGRect(x: (espacioBtn * 2), y: 5, width: 25, height: 22)
-        self.MapaBtn.frame = CGRect(x: (espacioBtn * 3 - 10), y: 5, width: 44, height: 44)
-        
-        
-        
-        if myvariables.solpendientes.count > 0{
-            self.CantSolPendientes.isHidden = false
-            self.CantSolPendientes.text = String(myvariables.solpendientes.count)
-            self.SolPendImage.isHidden = false
-        }
-        
         if myvariables.socket.reconnects{
             let ColaHilos = OperationQueue()
             let Hilos : BlockOperation = BlockOperation (block: {
@@ -182,11 +164,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
                 self.EnviarSocket(telefonos)
                 let datos = "OT"
                 self.EnviarSocket(datos)
-                if myvariables.solpendientes.count > 0{
-                    self.CantSolPendientes.isHidden = false
-                    self.CantSolPendientes.text = String(myvariables.solpendientes.count)
-                    self.SolPendImage.isHidden = false
-                }
             })
             ColaHilos.addOperation(Hilos)
         }else{
@@ -255,7 +232,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
             self.miposicion.title = "origen"
             self.coreLocationManager.stopUpdatingLocation()
             self.mapaVista.removeAnnotations(self.mapaVista.annotations)
-            self.SolPendientesView.isHidden = true
             self.origenIcono.isHidden = false
         }
     }
@@ -375,13 +351,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
                 let alertaDos = UIAlertController (title: "Cancelar Solicitud", message: "Su solicitud fue cancelada.", preferredStyle: UIAlertControllerStyle.alert)
                 alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                     self.Inicio()
-                    if myvariables.solpendientes.count != 0{
-                        self.SolPendientesView.isHidden = true
-                        self.CantSolPendientes.text = String(myvariables.solpendientes.count)
-                    }
-                    else{
-                        self.SolPendImage.isHidden = true
-                    }
                 }))
                 self.present(alertaDos, animated: true, completion: nil)
             }
@@ -436,12 +405,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
             if myvariables.solpendientes.count != 0{
                 let pos = self.BuscarPosSolicitudID(temporal[1])
                 myvariables.solpendientes.remove(at: pos)
-                if myvariables.solpendientes.count != 0{
-                    self.SolPendientesView.isHidden = true
-                    self.CantSolPendientes.text = String(myvariables.solpendientes.count)
-                }else{
-                    self.SolPendImage.isHidden = true
-                }
                 
                 let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "completadaView") as! CompletadaController
                 vc.idSolicitud = temporal[1]
@@ -645,14 +608,9 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         let region = MKCoordinateRegion(center: self.origenAnotacion.coordinate, span: span)
         self.mapaVista.setRegion(region, animated: true)
         self.mapaVista.addAnnotation(self.origenAnotacion)
-        if myvariables.solpendientes.count != 0 {
-            self.SolPendImage.isHidden = false
-            self.CantSolPendientes.text = String(myvariables.solpendientes.count)
-            self.CantSolPendientes.isHidden = false
-        }
+    
         self.formularioSolicitud.isHidden = true
         self.SolicitarBtn.isHidden = false
-        SolPendientesView.isHidden = true
         CancelarSolicitudProceso.isHidden = true
         AlertaEsperaView.isHidden = true
     }
@@ -726,9 +684,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
             }
             i += 11
         }
-        self.CantSolPendientes.isHidden = false
-        self.CantSolPendientes.text = String(myvariables.solpendientes.count)
-        self.SolPendImage.isHidden = false
     }
     
     //Funcion para Mostrar Datos del Taxi seleccionado
@@ -772,9 +727,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         
         if Temporal[1] == "ok"{
             myvariables.solpendientes.last!.RegistrarFechaHora(IdSolicitud: Temporal[2], FechaHora: Temporal[3])
-            self.CantSolPendientes.isHidden = false
-            self.CantSolPendientes.text = String(myvariables.solpendientes.count)
-            self.SolPendImage.isHidden = false
         }
         else{
             if Temporal[1] == "error"{
@@ -875,8 +827,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         let Datos = "#Cancelarsolicitud" + "," + (myvariables.solpendientes.last?.idSolicitud)! + "," + "null" + "," + motivo + "," + "# \n"
         myvariables.solpendientes.removeLast()
         if myvariables.solpendientes.count == 0 {
-            self.SolPendImage.isHidden = true
-            CantSolPendientes.isHidden = true
             myvariables.solicitudesproceso = false
         }
         if motivo != "Conductor"{
@@ -1107,8 +1057,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
                     let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ListaSolPdtes") as! SolicitudesTableController
                     vc.solicitudesMostrar = myvariables.solpendientes
                     self.navigationController?.show(vc, sender: nil)
-                }else{
-                    self.SolPendientesView.isHidden = false
                 }
             case "Call center"?:
                 let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "CallCenter") as! CallCenterController
@@ -1118,7 +1066,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
                 let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "Perfil") as! PerfilController
                 self.navigationController?.show(vc, sender: nil)
             case "Compartir app"?:
-                if let name = URL(string: "itms://itunes.apple.com/us/app/apple-store/id1149206387?mt=8") {
+                if let name = URL(string: "itms://itunes.apple.com/us/app/apple-store/id1432206841?mt=8") {
                     let objectsToShare = [name]
                     let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                     
@@ -1211,8 +1159,8 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         self.TablaDirecciones.reloadData()
         self.origenIcono.isHidden = true
         self.origenAnotacion.coordinate = mapaVista.centerCoordinate
-        coreLocationManager.stopUpdatingLocation()
-        self.SolicitarBtn.isHidden = true
+        //coreLocationManager.stopUpdatingLocation()
+        //self.SolicitarBtn.isHidden = true
         self.formularioSolicitud.isHidden = false
         let datos = "#Posicion," + myvariables.cliente.idCliente + "," + "\(self.origenAnotacion.coordinate.latitude)," + "\(self.origenAnotacion.coordinate.longitude)," + "# \n"
         EnviarSocket(datos)
@@ -1279,9 +1227,9 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
                     let newFavorita = [self.origenText.text, referenciaText.text]
                     self.GuardarFavorita(newFavorita: newFavorita as! [String])
                 }
+                self.SolicitarBtn.isHidden = true
                 self.CrearSolicitud(nuevaSolicitud,voucher: voucher)
                 self.RecordarView.isHidden = true
-                //self.CancelarSolicitudProceso.isHidden = false
             }else{
                 
             }
@@ -1290,7 +1238,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
     
     //Boton para Cancelar Carrera
     @IBAction func CancelarSol(_ sender: UIButton) {
-        print("Cancelando con taxi")
         self.formularioSolicitud.isHidden = true
         self.referenciaText.endEditing(true)
         self.Inicio()
@@ -1299,11 +1246,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         self.RecordarSwitch.isOn = false
         self.referenciaText.text?.removeAll()
         self.SolicitarBtn.isHidden = false
-        if myvariables.solpendientes.count != 0{
-            self.SolPendImage.isHidden = false
-            self.CantSolPendientes.text = String(myvariables.solpendientes.count)
-            self.CantSolPendientes.isHidden = false
-        }
     }
     
     // CANCELAR LA SOL MIENTRAS SE ESPERA LA FONFIRMACI'ON DEL TAXI
@@ -1313,7 +1255,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
     
     
     @IBAction func MostrarTelefonosCC(_ sender: AnyObject) {
-        self.SolPendientesView.isHidden = true
         let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "CallCenter") as! CallCenterController
         vc.telefonosCallCenter = self.TelefonosCallCenter
         self.navigationController?.show(vc, sender: nil)
@@ -1324,8 +1265,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
             let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "ListaSolPdtes") as! SolicitudesTableController
             vc.solicitudesMostrar = myvariables.solpendientes
             self.navigationController?.show(vc, sender: nil)
-        }else{
-            self.SolPendientesView.isHidden = !self.SolPendientesView.isHidden
         }
     }
     @IBAction func MapaMenu(_ sender: AnyObject) {
