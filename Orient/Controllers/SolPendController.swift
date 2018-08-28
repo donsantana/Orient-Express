@@ -72,17 +72,17 @@ class SolPendController: UIViewController, MKMapViewDelegate, UITextViewDelegate
         myvariables.socket.on("Taxi"){data, ack in
             //"#Taxi,"+nombreconductor+" "+apellidosconductor+","+telefono+","+codigovehiculo+","+gastocombustible+","+marcavehiculo+","+colorvehiculo+","+matriculavehiculo+","+urlfoto+","+idconductor+",# \n";
             let datosConductor = String(describing: data).components(separatedBy: ",")
+            
             self.NombreCond.text! = "Conductor: " + datosConductor[1]
             self.MarcaAut.text! = "Marca: " + datosConductor[5]
             self.ColorAut.text! = "Color: " + datosConductor[6]
             self.MatriculaAut.text! = "Matrícula: " + datosConductor[7]
             self.MovilCond.text! = "Movil: " + datosConductor[2]
-            if datosConductor[8] != "null" && datosConductor[8] != ""{
+            if (datosConductor[8] != "null" && datosConductor[8] != ""){
                 let url = URL(string:datosConductor[8])
                 
                 let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                     guard let data = data, error == nil else { return }
-                    
                     DispatchQueue.main.sync() {
                         self.ImagenCond.image = UIImage(data: data)
                     }

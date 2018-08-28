@@ -1,6 +1,6 @@
 //
 //  InicioController.swift
-//  UnTaxi
+//  Orient Express
 //
 //  Created by Done Santana on 2/3/17.
 //  Copyright © 2017 Done Santana. All rights reserved.
@@ -254,7 +254,6 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         
         myvariables.socket.on("LoginPassword"){data, ack in
             let temporal = String(describing: data).components(separatedBy: ",")
-            
             if (temporal[0] == "[#LoginPassword") || (temporal[0] == "#LoginPassword"){
                 myvariables.solpendientes = [CSolicitud]()
                 self.contador = 0

@@ -89,7 +89,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
         }
         
         if CConexionInternet.isConnectedToNetwork() == true{
-            myvariables.socket = SocketIOClient(socketURL: URL(string: "http://www.xoait.com:5803")!, config: [.log(false), .forcePolling(true)])
+            myvariables.socket = SocketIOClient(socketURL: URL(string: "http://173.249.14.205:6047")!, config: [.log(false), .forcePolling(true)])
             myvariables.socket.connect()
                 
             myvariables.socket.on("connect"){data, ack in
@@ -151,6 +151,21 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
         self.telefonoText.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
+    override func viewDidAppear(_ animated: Bool){
+        //Login
+        self.Usuario.setBottomBorder(borderColor: UIColor.black)
+        self.Clave.setBottomBorder(borderColor: UIColor.black)
+        //Registro
+        self.nombreApText.setBottomBorder(borderColor: UIColor.black)
+        self.telefonoText.setBottomBorder(borderColor: UIColor.black)
+        self.claveText.setBottomBorder(borderColor: UIColor.black)
+        self.confirmarClavText.setBottomBorder(borderColor: UIColor.black)
+        self.correoText.setBottomBorder(borderColor: UIColor.black)
+        self.RecomendadoText.setBottomBorder(borderColor: UIColor.black)
+        //Recuperar Clave
+        self.movilClaveRecover.setBottomBorder(borderColor: UIColor.black)
+    }
+    
     //MARK:- FUNCIONES PROPIAS
     
     func appUpdateAvailable() -> Bool
@@ -191,6 +206,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
 
     func SocketEventos(){
         myvariables.socket.on("LoginPassword"){data, ack in
+            
             self.EnviarTimer(estado: 0, datos: "Terminado")
             let temporal = String(describing: data).components(separatedBy: ",")
                 switch temporal[1]{
@@ -245,7 +261,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
                 }
         }
         
-        myvariables.socket.on("NR") {data, ack in
+        myvariables.socket.on("Registro") {data, ack in
             self.EnviarTimer(estado: 0, datos: "Terminado")
             let temporal = String(describing: data).components(separatedBy: ",")
             if temporal[1] == "registrook"{
@@ -315,6 +331,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
     func Login(loginData: String){
         self.AutenticandoView.isHidden = false
         self.login = String(loginData).components(separatedBy: ",")
+        self.Clave.text?.removeAll()
         EnviarSocket(loginData)
         //self.EnviarTimer(estado: 1, datos: loginData)
     }
@@ -441,9 +458,9 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
                 correo = "," + correoText.text! + "," + RecomendadoText.text!
             }
             if let posTemp = coreLocationManager.location{
-                    posicion = String(posTemp.coordinate.latitude) + "," + String(posTemp.coordinate.longitude)
+                posicion = String(posTemp.coordinate.latitude) + "," + String(posTemp.coordinate.longitude)
             }
-            let registroDatos = "#NR" + "," + nombreApText.text! + temporal + correo + "," + posicion + ",# \n"
+            let registroDatos = "#Registro" + "," + nombreApText.text! + temporal + correo + "," + posicion + ",# \n"
             myvariables.socket.emit("data", registroDatos)
             //self.EnviarTimer(estado: 1, datos: registroDatos)
         }
