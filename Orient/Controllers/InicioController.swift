@@ -131,7 +131,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         coreLocationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         coreLocationManager.startUpdatingLocation()  //Iniciar servicios de actualiación de localización del usuario
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ocultarTeclado))
         tapGesture.delegate = self
@@ -149,11 +149,11 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
             self.origenAnotacion.coordinate = (CLLocationCoordinate2D(latitude: -2.173714, longitude: -79.921601))
         }
         
-        let span = MKCoordinateSpanMake(0.005, 0.005)
+        let span = MKCoordinateSpan.init(latitudeDelta: 0.005, longitudeDelta: 0.005)
         let region = MKCoordinateRegion(center: self.origenAnotacion.coordinate, span: span)
         self.mapaVista.setRegion(region, animated: true)
         
-        if myvariables.socket.reconnects{
+        if myvariables.socket.status.active{
             let ColaHilos = OperationQueue()
             let Hilos : BlockOperation = BlockOperation (block: {
                 self.SocketEventos()
@@ -177,12 +177,12 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         self.origenText.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         //PEDIR PERMISO PARA EL MICROPHONO
-        switch AVAudioSession.sharedInstance().recordPermission() {
-        case AVAudioSessionRecordPermission.granted:
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case AVAudioSession.RecordPermission.granted:
             print("Permission granted")
-        case AVAudioSessionRecordPermission.denied:
+        case AVAudioSession.RecordPermission.denied:
             print("Pemission denied")
-        case AVAudioSessionRecordPermission.undetermined:
+        case AVAudioSession.RecordPermission.undetermined:
             AVAudioSession.sharedInstance().requestRecordPermission({(granted: Bool)-> Void in
                 if granted {
                     
@@ -281,7 +281,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
                         
                     }
                     
-                    let alertaDos = UIAlertController (title: "Autenticación", message: "Usuario y/o clave incorrectos", preferredStyle: UIAlertControllerStyle.alert)
+                    let alertaDos = UIAlertController (title: "Autenticación", message: "Usuario y/o clave incorrectos", preferredStyle: UIAlertController.Style.alert)
                     alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                         
                     }))
@@ -298,7 +298,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
 
             let temporal = String(describing: data).components(separatedBy: ",")
             if(temporal[1] == "0") {
-                let alertaDos = UIAlertController(title: "Solicitud de Taxi", message: "No hay taxis disponibles en este momento, espere unos minutos y vuelva a intentarlo.", preferredStyle: UIAlertControllerStyle.alert )
+                let alertaDos = UIAlertController(title: "Solicitud de Taxi", message: "No hay taxis disponibles en este momento, espere unos minutos y vuelva a intentarlo.", preferredStyle: UIAlertController.Style.alert )
                 alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                     self.Inicio()
                 }))                
@@ -347,7 +347,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         myvariables.socket.on("Cancelarsolicitud"){data, ack in
             let temporal = String(describing: data).components(separatedBy: ",")
             if temporal[1] == "ok"{
-                let alertaDos = UIAlertController (title: "Cancelar Solicitud", message: "Su solicitud fue cancelada.", preferredStyle: UIAlertControllerStyle.alert)
+                let alertaDos = UIAlertController (title: "Cancelar Solicitud", message: "Su solicitud fue cancelada.", preferredStyle: UIAlertController.Style.alert)
                 alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                     self.Inicio()
                 }))
@@ -418,7 +418,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         
         myvariables.socket.on("Cambioestadosolicitudconductor"){data, ack in
             let temporal = String(describing: data).components(separatedBy: ",")
-            let alertaDos = UIAlertController (title: "Estado de Solicitud", message: "Solicitud cancelada por el conductor.", preferredStyle: UIAlertControllerStyle.alert)
+            let alertaDos = UIAlertController (title: "Estado de Solicitud", message: "Solicitud cancelada por el conductor.", preferredStyle: UIAlertController.Style.alert)
             alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                 var pos = -1
                 pos = self.BuscarPosSolicitudID(temporal[1])
@@ -437,7 +437,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
             if myvariables.solpendientes.count != 0{
                 for solicitudenproceso in myvariables.solpendientes{
                     if solicitudenproceso.idSolicitud == temporal[1]{
-                        let alertaDos = UIAlertController (title: "Estado de Solicitud", message: "No se encontó ningún taxi disponible para ejecutar su solicitud. Por favor inténtelo más tarde.", preferredStyle: UIAlertControllerStyle.alert)
+                        let alertaDos = UIAlertController (title: "Estado de Solicitud", message: "No se encontó ningún taxi disponible para ejecutar su solicitud. Por favor inténtelo más tarde.", preferredStyle: UIAlertController.Style.alert)
                         alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                             self.CancelarSolicitudes("")
                         }))
@@ -524,7 +524,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
             contador += 1
         }
         else{
-            let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor intentar otra vez.", preferredStyle: UIAlertControllerStyle.alert)
+            let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor intentar otra vez.", preferredStyle: UIAlertController.Style.alert)
             alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                 exit(0)
             }))
@@ -548,11 +548,11 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
     //FUNCIÓN ENVIAR AL SOCKET
     @objc func EnviarSocket(_ datos: String){
         if CConexionInternet.isConnectedToNetwork() == true{
-            if myvariables.socket.reconnects && self.EnviosCount <= 3{
+            if myvariables.socket.status.active && self.EnviosCount <= 3{
                 myvariables.socket.emit("data",datos)
                 //self.EnviarTimer(estado: 1, datos: datos)
             }else{
-                let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor intentar otra vez.", preferredStyle: UIAlertControllerStyle.alert)
+                let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor intentar otra vez.", preferredStyle: UIAlertController.Style.alert)
                 alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                     exit(0)
                 }))
@@ -566,13 +566,13 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
     
     @objc func EnviarSocket1(_ timer: Timer){
         if CConexionInternet.isConnectedToNetwork() == true{
-            if myvariables.socket.reconnects && self.EnviosCount <= 3 {
+            if myvariables.socket.status.active && self.EnviosCount <= 3 {
                 self.EnviosCount += 1
                 let userInfo = timer.userInfo as! Dictionary<String, AnyObject>
                 var datos = (userInfo["datos"] as! String)
                 myvariables.socket.emit("data",datos)
             }else{
-                let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor intentar otra vez.", preferredStyle: UIAlertControllerStyle.alert)
+                let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor intentar otra vez.", preferredStyle: UIAlertController.Style.alert)
                 alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                     self.EnviarTimer(estado: 0, datos: "Terminado")
                     exit(0)
@@ -589,7 +589,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         //self.CargarTelefonos()
         //AlertaSinConexion.isHidden = false
         
-        let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor revise su conexión a Internet.", preferredStyle: UIAlertControllerStyle.alert)
+        let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor revise su conexión a Internet.", preferredStyle: UIAlertController.Style.alert)
         alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
             exit(0)
         }))
@@ -603,7 +603,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         self.origenIcono.image = UIImage(named: "origen2")
         self.origenIcono.isHidden = true
         self.origenAnotacion.title = "origen"
-        let span = MKCoordinateSpanMake(0.005, 0.005)
+        let span = MKCoordinateSpan.init(latitudeDelta: 0.005, longitudeDelta: 0.005)
         let region = MKCoordinateRegion(center: self.origenAnotacion.coordinate, span: span)
         self.mapaVista.setRegion(region, animated: true)
         self.mapaVista.addAnnotation(self.origenAnotacion)
@@ -774,7 +774,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
     //CANCELAR SOLICITUDES
     func MostrarMotivoCancelacion(){
         //["No necesito","Demora el servicio","Tarifa incorrecta","Solo probaba el servicio", "Cancelar"]
-        let motivoAlerta = UIAlertController(title: "", message: "Seleccione el motivo de cancelación.", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let motivoAlerta = UIAlertController(title: "", message: "Seleccione el motivo de cancelación.", preferredStyle: UIAlertController.Style.actionSheet)
         motivoAlerta.addAction(UIAlertAction(title: "No necesito", style: .default, handler: { action in
             
             self.CancelarSolicitudes("No necesito")
@@ -800,7 +800,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
             self.CancelarSolicitudes("Solo probaba el servicio")
             
         }))
-        motivoAlerta.addAction(UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.destructive, handler: { action in
+        motivoAlerta.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.destructive, handler: { action in
         }))
         self.present(motivoAlerta, animated: true, completion: nil)
     }
@@ -973,7 +973,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
     //Funciones para mover los elementos para que no queden detrás del teclado
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.keyboardHeight = keyboardSize.height
         }
     }
@@ -1094,10 +1094,10 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
         return "Eliminar"
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
             self.EliminarFavorita(posFavorita: indexPath.row)
-            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
             if self.DireccionesArray.count == 0{
                 self.TablaDirecciones.isHidden = true
             }
@@ -1138,7 +1138,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
     }
     
     @IBAction func RelocateBtn(_ sender: Any) {
-        let span = MKCoordinateSpanMake(0.005, 0.005)
+        let span = MKCoordinateSpan.init(latitudeDelta: 0.005, longitudeDelta: 0.005)
         let region = MKCoordinateRegion(center: self.origenAnotacion.coordinate, span: span)
         self.mapaVista.setRegion(region, animated: true)
         
@@ -1274,7 +1274,7 @@ class InicioController: UIViewController, CLLocationManagerDelegate, UITextViewD
 
 extension UITextField {
     func setBottomBorder(borderColor: UIColor) {
-        self.borderStyle = UITextBorderStyle.none
+        self.borderStyle = UITextField.BorderStyle.none
         self.backgroundColor = UIColor.clear
         let width = 1.0
         let borderLine = UIView()
@@ -1287,28 +1287,28 @@ extension UITextField {
 extension MKMapView {
     /// when we call this function, we have already added the annotations to the map, and just want all of them to be displayed.
     func fitAll() {
-        var zoomRect            = MKMapRectNull;
+        var zoomRect            = MKMapRect.null;
         for annotation in annotations {
-            let annotationPoint = MKMapPointForCoordinate(annotation.coordinate)
-            let pointRect       = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.01, 0.01)
-            zoomRect            = MKMapRectUnion(zoomRect, pointRect);
+            let annotationPoint = MKMapPoint.init(annotation.coordinate)
+            let pointRect       = MKMapRect.init(x: annotationPoint.x, y: annotationPoint.y, width: 0.01, height: 0.01)
+            zoomRect            = zoomRect.union(pointRect);
         }
-        setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(100, 100, 100, 100), animated: true)
+        setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsets.init(top: 100, left: 100, bottom: 100, right: 100), animated: true)
     }
     
     /// we call this function and give it the annotations we want added to the map. we display the annotations if necessary
     func fitAll(in annotations: [MKAnnotation], andShow show: Bool) {
         
-        var zoomRect:MKMapRect  = MKMapRectNull
+        var zoomRect:MKMapRect  = MKMapRect.null
         
         for annotation in annotations {
-            let aPoint          = MKMapPointForCoordinate(annotation.coordinate)
-            let rect            = MKMapRectMake(aPoint.x, aPoint.y, 0.071, 0.071)
+            let aPoint          = MKMapPoint.init(annotation.coordinate)
+            let rect            = MKMapRect.init(x: aPoint.x, y: aPoint.y, width: 0.071, height: 0.071)
             
-            if MKMapRectIsNull(zoomRect) {
+            if zoomRect.isNull {
                 zoomRect = rect
             } else {
-                zoomRect = MKMapRectUnion(zoomRect, rect)
+                zoomRect = zoomRect.union(rect)
             }
         }
         if(show) {

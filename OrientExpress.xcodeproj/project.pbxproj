@@ -31,8 +31,6 @@
 		84F28A321CC14F1700529F53 /* logpassfondo@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F28A311CC14F1700529F53 /* logpassfondo@2X.png */; };
 		84F493D31CA11C8800A54C36 /* encabezadosIOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F493D21CA11C8800A54C36 /* encabezadosIOS.png */; };
 		84F493D71CA137AD00A54C36 /* solpendientes.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F493D61CA137AD00A54C36 /* solpendientes.png */; };
-		84F5715C1BCE958200FC18D5 /* XtaxiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F5715B1BCE958200FC18D5 /* XtaxiTests.swift */; };
-		84F571671BCE958200FC18D5 /* XtaxiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F571661BCE958200FC18D5 /* XtaxiUITests.swift */; };
 		84F7E3831CB389A6008D4713 /* stargris.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F7E3821CB389A6008D4713 /* stargris.png */; };
 		84F7E3851CB38C04008D4713 /* stardorada.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F7E3841CB38C04008D4713 /* stardorada.png */; };
 		AF3D9E0F1FA504CB0019432B /* CallCenterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF3D9E0D1FA504CB0019432B /* CallCenterViewCell.xib */; };
@@ -97,23 +95,6 @@
 		C31313AEFF1D39398115D9B6 /* Pods_OrientExpress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8474D81D7CECBB7F8D11C3E0 /* Pods_OrientExpress.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		84F571581BCE958200FC18D5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 84F5713B1BCE958200FC18D5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 84F571421BCE958200FC18D5;
-			remoteInfo = Xtaxi;
-		};
-		84F571631BCE958200FC18D5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 84F5713B1BCE958200FC18D5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 84F571421BCE958200FC18D5;
-			remoteInfo = Xtaxi;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		24909F60B24CA2D8F0CE494E /* Pods-UnTaxi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnTaxi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UnTaxi/Pods-UnTaxi.debug.xcconfig"; sourceTree = "<group>"; };
 		614803C5DB936BE9A78397E5 /* Pods_UnTaxi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnTaxi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,10 +126,8 @@
 		84F493D61CA137AD00A54C36 /* solpendientes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solpendientes.png; sourceTree = "<group>"; };
 		84F571431BCE958200FC18D5 /* OrientExpress.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrientExpress.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F571521BCE958200FC18D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84F571571BCE958200FC18D5 /* OrientExpress.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrientExpress.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F5715B1BCE958200FC18D5 /* XtaxiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XtaxiTests.swift; sourceTree = "<group>"; };
 		84F5715D1BCE958200FC18D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84F571621BCE958200FC18D5 /* OrientExpress.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrientExpress.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F571661BCE958200FC18D5 /* XtaxiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XtaxiUITests.swift; sourceTree = "<group>"; };
 		84F571681BCE958200FC18D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84F7E3821CB389A6008D4713 /* stargris.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stargris.png; sourceTree = "<group>"; };
@@ -235,20 +214,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C31313AEFF1D39398115D9B6 /* Pods_OrientExpress.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		84F571541BCE958200FC18D5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		84F5715F1BCE958200FC18D5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,8 +315,6 @@
 			isa = PBXGroup;
 			children = (
 				84F571431BCE958200FC18D5 /* OrientExpress.temp_caseinsensitive_rename.app */,
-				84F571571BCE958200FC18D5 /* OrientExpress.temp_caseinsensitive_rename.xctest */,
-				84F571621BCE958200FC18D5 /* OrientExpress.temp_caseinsensitive_rename.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -476,42 +439,6 @@
 			productReference = 84F571431BCE958200FC18D5 /* OrientExpress.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
-		84F571561BCE958200FC18D5 /* OrientExpressTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 84F5716E1BCE958200FC18D5 /* Build configuration list for PBXNativeTarget "OrientExpressTests" */;
-			buildPhases = (
-				84F571531BCE958200FC18D5 /* Sources */,
-				84F571541BCE958200FC18D5 /* Frameworks */,
-				84F571551BCE958200FC18D5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				84F571591BCE958200FC18D5 /* PBXTargetDependency */,
-			);
-			name = OrientExpressTests;
-			productName = XtaxiTests;
-			productReference = 84F571571BCE958200FC18D5 /* OrientExpress.temp_caseinsensitive_rename.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		84F571611BCE958200FC18D5 /* OrientExpressUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 84F571711BCE958200FC18D5 /* Build configuration list for PBXNativeTarget "OrientExpressUITests" */;
-			buildPhases = (
-				84F5715E1BCE958200FC18D5 /* Sources */,
-				84F5715F1BCE958200FC18D5 /* Frameworks */,
-				84F571601BCE958200FC18D5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				84F571641BCE958200FC18D5 /* PBXTargetDependency */,
-			);
-			name = OrientExpressUITests;
-			productName = XtaxiUITests;
-			productReference = 84F571621BCE958200FC18D5 /* OrientExpress.temp_caseinsensitive_rename.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -524,7 +451,7 @@
 					84F571421BCE958200FC18D5 = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 2VMNV5JH5M;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -540,14 +467,6 @@
 								enabled = 0;
 							};
 						};
-					};
-					84F571561BCE958200FC18D5 = {
-						CreatedOnToolsVersion = 7.0.1;
-						TestTargetID = 84F571421BCE958200FC18D5;
-					};
-					84F571611BCE958200FC18D5 = {
-						CreatedOnToolsVersion = 7.0.1;
-						TestTargetID = 84F571421BCE958200FC18D5;
 					};
 				};
 			};
@@ -565,8 +484,6 @@
 			projectRoot = "";
 			targets = (
 				84F571421BCE958200FC18D5 /* OrientExpress */,
-				84F571561BCE958200FC18D5 /* OrientExpressTests */,
-				84F571611BCE958200FC18D5 /* OrientExpressUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -637,20 +554,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84F571551BCE958200FC18D5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		84F571601BCE958200FC18D5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -681,19 +584,23 @@
 				"${PODS_ROOT}/Target Support Files/Pods-OrientExpress/Pods-OrientExpress-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Canvas/Canvas.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
-				"${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework",
+				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Canvas.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarscreamSocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyXMLParser.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -737,36 +644,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84F571531BCE958200FC18D5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				84F5715C1BCE958200FC18D5 /* XtaxiTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		84F5715E1BCE958200FC18D5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				84F571671BCE958200FC18D5 /* XtaxiUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		84F571591BCE958200FC18D5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 84F571421BCE958200FC18D5 /* OrientExpress */;
-			targetProxy = 84F571581BCE958200FC18D5 /* PBXContainerItemProxy */;
-		};
-		84F571641BCE958200FC18D5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 84F571421BCE958200FC18D5 /* OrientExpress */;
-			targetProxy = 84F571631BCE958200FC18D5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B5F753E31D5D045500FFDFD0 /* Main.storyboard */ = {
@@ -885,7 +763,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FF163220CC7535A15E736010 /* Pods-OrientExpress.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -913,7 +791,8 @@
 				PRODUCT_NAME = OrientExpress.temp_caseinsensitive_rename;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -922,7 +801,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AEDC87AE75A3F3A2026EAB89 /* Pods-OrientExpress.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -949,56 +828,9 @@
 				PRODUCT_NAME = OrientExpress.temp_caseinsensitive_rename;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		84F5716F1BCE958200FC18D5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = XtaxiTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = XOA.XtaxiTests;
-				PRODUCT_NAME = OrientExpress.temp_caseinsensitive_rename;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrientExpress.temp_caseinsensitive_rename.app/OrientExpress.temp_caseinsensitive_rename";
-			};
-			name = Debug;
-		};
-		84F571701BCE958200FC18D5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = XtaxiTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = XOA.XtaxiTests;
-				PRODUCT_NAME = OrientExpress.temp_caseinsensitive_rename;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrientExpress.temp_caseinsensitive_rename.app/OrientExpress.temp_caseinsensitive_rename";
-			};
-			name = Release;
-		};
-		84F571721BCE958200FC18D5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = XtaxiUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = XOA.XtaxiUITests;
-				PRODUCT_NAME = OrientExpress.temp_caseinsensitive_rename;
-				TEST_TARGET_NAME = Xtaxi;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		84F571731BCE958200FC18D5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = XtaxiUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = XOA.XtaxiUITests;
-				PRODUCT_NAME = OrientExpress.temp_caseinsensitive_rename;
-				TEST_TARGET_NAME = Xtaxi;
-				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
@@ -1019,24 +851,6 @@
 			buildConfigurations = (
 				84F5716C1BCE958200FC18D5 /* Debug */,
 				84F5716D1BCE958200FC18D5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		84F5716E1BCE958200FC18D5 /* Build configuration list for PBXNativeTarget "OrientExpressTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				84F5716F1BCE958200FC18D5 /* Debug */,
-				84F571701BCE958200FC18D5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		84F571711BCE958200FC18D5 /* Build configuration list for PBXNativeTarget "OrientExpressUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				84F571721BCE958200FC18D5 /* Debug */,
-				84F571731BCE958200FC18D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

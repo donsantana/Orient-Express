@@ -28,6 +28,8 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
     var currentDictionary = [String : String]()    // the current dictionary
     var currentValue: String = ""                   // the current value for one of the keys in the dictionary
     
+    let manager = SocketManager(socketURL: URL(string: "http://173.249.14.205:6047")!, config: [.log(true), .forcePolling(true)])
+    
     //MARK:- VARIABLES INTERFAZ
     
     @IBOutlet weak var Usuario: UITextField!
@@ -89,7 +91,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
         }
         
         if CConexionInternet.isConnectedToNetwork() == true{
-            myvariables.socket = SocketIOClient(socketURL: URL(string: "http://173.249.14.205:6047")!, config: [.log(false), .forcePolling(true)])
+            myvariables.socket = self.manager.defaultSocket
             myvariables.socket.connect()
                 
             myvariables.socket.on("connect"){data, ack in
@@ -220,7 +222,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
                         case .notDetermined, .restricted, .denied:
                             let locationAlert = UIAlertController (title: "Error de Localización", message: "Estimado cliente es necesario que active la localización de su dispositivo.", preferredStyle: .alert)
                             locationAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
-                                UIApplication.shared.openURL(NSURL(string:UIApplicationOpenSettingsURLString)! as URL)
+                                UIApplication.shared.openURL(NSURL(string:UIApplication.openSettingsURLString)! as URL)
                                 //self.Login()
                             }))
                             locationAlert.addAction(UIAlertAction(title: "No", style: .default, handler: {alerAction in
@@ -250,7 +252,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
                     }catch{
                         
                     }
-                    let alertaDos = UIAlertController (title: "Autenticación", message: "Usuario y/o clave incorrectos", preferredStyle: UIAlertControllerStyle.alert)
+                    let alertaDos = UIAlertController (title: "Autenticación", message: "Usuario y/o clave incorrectos", preferredStyle: UIAlertController.Style.alert)
                     alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                         self.AutenticandoView.isHidden = true
                         self.Usuario.text?.removeAll()
@@ -275,7 +277,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
                 self.present(alertaDos, animated: true, completion: nil)
             }
             else{
-                let alertaDos = UIAlertController (title: "Registro de Usuario", message: "Error al registrar el usuario: \(temporal[2])", preferredStyle: UIAlertControllerStyle.alert)
+                let alertaDos = UIAlertController (title: "Registro de Usuario", message: "Error al registrar el usuario: \(temporal[2])", preferredStyle: UIAlertController.Style.alert)
                 alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                     self.AutenticandoView.isHidden = true
                 }))
@@ -288,7 +290,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
             self.EnviarTimer(estado: 0, datos: "Terminado")
             let temporal = String(describing: data).components(separatedBy: ",")
             if temporal[1] == "ok"{
-                let alertaDos = UIAlertController (title: "Recuperación de clave", message: "Su clave ha sido recuperada satisfactoriamente, en este momento ha recibido un correo electronico a la dirección: " + temporal[2], preferredStyle: UIAlertControllerStyle.alert)
+                let alertaDos = UIAlertController (title: "Recuperación de clave", message: "Su clave ha sido recuperada satisfactoriamente, en este momento ha recibido un correo electronico a la dirección: " + temporal[2], preferredStyle: UIAlertController.Style.alert)
                 alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                 }))
                 self.present(alertaDos, animated: true, completion: nil)
@@ -351,12 +353,12 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
     //FUNCIÓN ENVIAR AL SOCKET
     func EnviarSocket(_ datos: String){
         if CConexionInternet.isConnectedToNetwork() == true{
-            if myvariables.socket.reconnects{
+            if myvariables.socket.status.active{
                 myvariables.socket.emit("data",datos)
                 self.EnviarTimer(estado: 1, datos: datos)
             }
             else{
-                let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor intentar otra vez.", preferredStyle: UIAlertControllerStyle.alert)
+                let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor intentar otra vez.", preferredStyle: UIAlertController.Style.alert)
                 alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                     exit(0)
                 }))
@@ -370,14 +372,14 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
     
     @objc func EnviarSocket1(_ timer: Timer){
         if CConexionInternet.isConnectedToNetwork() == true{
-            if myvariables.socket.reconnects && self.EnviosCount <= 3 {
+            if myvariables.socket.status.active && self.EnviosCount <= 3 {
                 self.EnviosCount += 1
                 let userInfo = timer.userInfo as! Dictionary<String, AnyObject>
                 var datos: String = (userInfo["datos"] as! String)
                 myvariables.socket.emit("data",datos)
                 //let result = myvariables.socket.emitWithAck("data", datos)
             }else{
-                let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor intentar otra vez.", preferredStyle: UIAlertControllerStyle.alert)
+                let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor intentar otra vez.", preferredStyle: UIAlertController.Style.alert)
                 alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                     exit(0)
                 }))    
@@ -389,7 +391,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
     }
     
     func ErrorConexion(){
-        let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor revise su conexión a Internet.", preferredStyle: UIAlertControllerStyle.alert)
+        let alertaDos = UIAlertController (title: "Sin Conexión", message: "No se puede conectar al servidor por favor revise su conexión a Internet.", preferredStyle: UIAlertController.Style.alert)
         alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
             exit(0)
         }))
@@ -443,7 +445,7 @@ class LoginController: UIViewController, UITextFieldDelegate, CLLocationManagerD
     }
     @IBAction func EnviarRegistro(_ sender: AnyObject) {
         if (nombreApText.text!.isEmpty || telefonoText.text!.isEmpty || claveText.text!.isEmpty) {
-            let alertaDos = UIAlertController (title: "Registro de Usuario", message: "Debe llenar todos los campos del formulario", preferredStyle: UIAlertControllerStyle.alert)
+            let alertaDos = UIAlertController (title: "Registro de Usuario", message: "Debe llenar todos los campos del formulario", preferredStyle: UIAlertController.Style.alert)
             alertaDos.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: {alerAction in
                 
             }))
@@ -649,15 +651,6 @@ extension LoginController: XMLParserDelegate {
             
         }
         self.ServersData = String(describing: writeString).components(separatedBy: ",")
-        completionHandler(true)
-    }
-    func ServerConect(completionHandler:@escaping (Bool)->()){
-        var i = 0
-        while i < self.ServersData.count - 1{
-            myvariables.socket = SocketIOClient(socketURL: URL(string: "http://"+self.ServersData[i])!, config: [.log(false), .forcePolling(true)])
-            myvariables.socket.connect()
-            i += 1
-        }
         completionHandler(true)
     }
 }
